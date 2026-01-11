@@ -1,0 +1,21 @@
+{
+  "name": "chat-connect-handler",
+  "version": "1.0.0",
+  "description": "WebSocket connect handler for chat application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "websocket",
+    "lambda",
+    "aws",
+    "chat"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.478.0",
+    "@aws-sdk/lib-dynamodb": "^3.478.0"
+  }
+}
