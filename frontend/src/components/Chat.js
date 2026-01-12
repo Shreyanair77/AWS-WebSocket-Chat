@@ -5,6 +5,7 @@ import WebSocketService from '../services/websocket';
 const Chat = ({ user }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const [connectionStatus, setConnectionStatus] = useState('connecting');
   const [error, setError] = useState(null);
   const wsService = useRef(null);
@@ -55,10 +56,23 @@ const Chat = ({ user }) => {
     
     if (success) {
       setNewMessage('');
+      setIsTyping(false);
       setError(null);
     } else {
       setError('Failed to send message. Please try again.');
     }
+  };
+
+  // Typing indicator (local): show animated dots while user is typing
+  let typingTimeout = useRef(null);
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setNewMessage(value);
+    setIsTyping(true);
+    if (typingTimeout.current) clearTimeout(typingTimeout.current);
+    typingTimeout.current = setTimeout(() => {
+      setIsTyping(false);
+    }, 900);
   };
 
   const getStatusText = () => {
@@ -98,9 +112,10 @@ const Chat = ({ user }) => {
           className="message-input"
           placeholder="Type a message..."
           value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
+          onChange={handleInputChange}
           maxLength={1000}
           disabled={connectionStatus !== 'connected'}
+          aria-label="Message input"
         />
         <button
           type="submit"
@@ -109,6 +124,9 @@ const Chat = ({ user }) => {
         >
           Send
         </button>
+        <div className={`typing-indicator ${isTyping ? 'visible' : ''}`} aria-hidden={!isTyping}>
+          <span></span><span></span><span></span>
+        </div>
       </form>
     </div>
   );
