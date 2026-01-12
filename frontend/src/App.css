@@ -384,3 +384,13 @@ body {
   .chat-container { height: calc(100vh - 180px); border-radius: 8px; }
 }
 
+/* Respect user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

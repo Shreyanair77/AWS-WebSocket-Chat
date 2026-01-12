@@ -30,7 +30,7 @@ const MessageList = ({ messages, currentUser }) => {
   }
 
   return (
-    <div className="messages-container">
+    <div className="messages-container" role="log" aria-live="polite" aria-atomic="false">
       {messages.map((message, index) => {
         const isOwnMessage = message.username === currentUser;
         const isSystemMessage = message.type === 'system';
@@ -47,6 +47,7 @@ const MessageList = ({ messages, currentUser }) => {
           <div 
             key={message.messageId || index} 
             className={`message ${isOwnMessage ? 'own' : ''}`}
+            tabIndex={0}
           >
             <div className="message-header">
               <span className="message-username">
