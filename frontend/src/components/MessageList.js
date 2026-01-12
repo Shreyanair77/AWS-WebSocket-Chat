@@ -23,7 +23,7 @@ const MessageList = ({ messages, currentUser }) => {
     return (
       <div className="messages-container">
         <div className="empty-messages">
-          💬 No messages yet. Start the conversation!
+          No messages yet. Start the conversation.
         </div>
       </div>
     );

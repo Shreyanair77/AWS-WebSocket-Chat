@@ -48,10 +48,11 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🚀 AWS WebSocket Chat</h1>
+        <h1>AWS WebSocket Chat</h1>
         {user && (
           <div className="user-info">
-            <span className="username">👤 {user.username}</span>
+            <span className="avatar" aria-hidden="true">{user.username.charAt(0).toUpperCase()}</span>
+            <span className="username">{user.username}</span>
             <button className="logout-btn" onClick={handleLogout}>
               Logout
             </button>

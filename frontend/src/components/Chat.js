@@ -86,7 +86,7 @@ const Chat = ({ user }) => {
 
       {error && (
         <div className="error-message">
-          ⚠️ {error}
+          <strong>Error:</strong> {error}
         </div>
       )}
 
